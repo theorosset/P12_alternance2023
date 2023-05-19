@@ -1,9 +1,21 @@
 import { FC } from "react";
-import "./Header.scss" 
+import "./SportIcon.scss" 
+import PropTypes, { InferProps } from 'prop-types';
 
-const SportIcon: FC = () => {
+const propTypes = {
+    icon: PropTypes.string,
+}
+
+const SportIcon: FC<InferProps<typeof propTypes>> = ({icon}) => {
+
+    if(!icon) {
+        return <h1>Erreur lors du chargement des icons</h1>
+    }
+
     return (
-        <h1>oui</h1>
+        <div className="container__sport">
+            <img className="container__sport--img" src={icon} alt="" />
+        </div>
     )
 }
 

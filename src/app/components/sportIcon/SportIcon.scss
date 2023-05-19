@@ -1,0 +1,10 @@
+.container__sport {
+    margin-top: 1rem;
+    &--img {
+        padding: 0.7rem;
+        width: 30px;
+        max-height: 30px;
+        border-radius: 5px;
+        background-color: white;
+    }
+}

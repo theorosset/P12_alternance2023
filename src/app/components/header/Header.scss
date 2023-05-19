@@ -2,7 +2,6 @@
     display: flex;
     background-color: black;
     height: 91px;
-    color: white;
 
     &__item {
         display: flex;
@@ -25,4 +24,9 @@
             }
         }
     }
+}
+
+a {
+    text-decoration: none;
+    color: white;
 }
