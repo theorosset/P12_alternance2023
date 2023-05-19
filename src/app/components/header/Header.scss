@@ -1,0 +1,28 @@
+.header__container {
+    display: flex;
+    background-color: black;
+    height: 91px;
+    color: white;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 1400px;
+        font-size: 19px;
+    
+        &--img {
+            margin-left: 1.7rem;
+            width: 160px;
+        }
+
+        &__navigation {
+            width: 100%;
+            &--list {
+                list-style: none;
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+    }
+}
