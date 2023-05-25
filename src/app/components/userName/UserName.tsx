@@ -1,7 +1,15 @@
+import { FC } from "react"
+import './UserName.scss'
+interface Props {
+    name: String
+}
 
-const UserName = () => {
+const UserName: FC<Props> = ({name}) => {
     return (
-        <h1>oui</h1>
+        <div className="container__username">
+            <h1>Bonjour <span className="container__username--name">{ name }</span></h1>
+            <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+        </div>
     )
 }
 

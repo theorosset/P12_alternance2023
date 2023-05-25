@@ -1,0 +1,11 @@
+@import '../../sass/main.scss';
+
+.container__username {
+    margin-top: 1.5rem;
+    & > h1 {
+        font-size: 34px;
+    }
+    &--name {
+        color: $primary-color;
+    }
+}

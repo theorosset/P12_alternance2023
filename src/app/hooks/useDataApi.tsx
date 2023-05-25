@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import axios, { Axios, AxiosResponse } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import FormatData from "../utils/formatData";
+import { formatedData } from "../models/formatedData";
 
 const UseDataApi = (userId: string) => {
     const baseUrl = "http://localhost:3000/user";
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [dataFormated, setDataFormated] = useState<any[]>([]);
+    const [dataFormated, setDataFormated] = useState<formatedData>();
   
     useEffect(() => {
       setLoading(true);
@@ -34,8 +35,7 @@ const UseDataApi = (userId: string) => {
             tmpData.push(data.data);
           });
   
-          const formattedData = new FormatData(tmpData) as any
-          setDataFormated(formattedData);
+          setDataFormated(new FormatData(tmpData) as any);
         } catch (error) {
           console.error(error);
           setError(true);
