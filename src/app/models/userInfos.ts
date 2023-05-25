@@ -1,4 +1,4 @@
-export interface userInfos {
+export type userInfos = {
     id: number,
     keyData: keyData
     todayScore: number
