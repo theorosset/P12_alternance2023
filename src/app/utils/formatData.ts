@@ -2,10 +2,10 @@ import { userPerformance } from "../models/userPerformance"
 import { userInfos } from "../models/userInfos"
 
 export default class FormatData {
-    // public formatedData = [] as any[]
     public userPerformance = {} as userPerformance
     public userInfo = {} as userInfos
-    // private userSession = {}
+    public sessionsLength = {}
+    public sessionsKiloAndCalories = {} 
 
     constructor(responsesData: any) {
 
@@ -21,7 +21,7 @@ export default class FormatData {
                     }
                     return element;
                 });
-
+                //change name of key
                 delete response.kind;
                 delete response.data;
 
@@ -29,22 +29,22 @@ export default class FormatData {
                 this.userPerformance = response
             }
 
+            // get userInfos
             if (response.userInfos) {
                 this.userInfo = response
             }
 
+            //get session 
+            if(response.sessions) {
+              response.sessions.forEach((session: any) => {
+                    if(session.sessionLength) {
+                        return this.sessionsLength = response
+                    } else {
+                        return this.sessionsKiloAndCalories = response
+                    }
+                })  
+            }
         });
 
-        // if(sessions) {
-
-        //     sessions.sort((a: any, b: any) => {
-        //         const dateA = new Date(a.day);
-        //         const dateB = new Date(b.day);
-        //         return dateA.getTime() - dateB.getTime();
-        //       });
-
-        // }
-        // this.formatedData = [this.userPerformance, this.userInfo]
-        // return this.formatedData as any
     }
 }

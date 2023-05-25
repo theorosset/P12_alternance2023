@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import UseDataApi from '../../hooks/useDataApi'
 import UserName from '../../components/userName/UserName';
+import ChartBar from '../../components/chartBar/ChartBar'
 import "./Profil.scss"
 
 const Profil = () => {
@@ -10,6 +11,7 @@ const Profil = () => {
 
   
     const [loading, error, dataFormated] = UseDataApi('12')
+    console.log(dataFormated)
 
     if(!dataFormated) {
         return (<h1>is Loading</h1>)
@@ -20,6 +22,7 @@ const Profil = () => {
             <Header />
             <div className='container__profil__center'>
                 <UserName name={dataFormated.userInfo.userInfos.firstName} />
+                <ChartBar />
             </div>
         </div>
     )
