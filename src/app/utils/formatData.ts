@@ -1,18 +1,23 @@
-export default class FormatData {
-    private formatedData = []
-    private userPerformance = {}
-    private userInfo = {}
+import { userPerformance } from "../models/userPerformance"
+import { userInfos } from "../models/userInfos" 
 
-    constructor(responseData: any) {
-        // console.log(responseData)
-        if (responseData.kind) {
+export default class FormatData {
+    public formatedData = [] as any[]
+    // private userPerformance = {} as userPerformance
+    // private userInfo = {} as userInfos
+    // private userSession = {}
+
+    constructor(responseData: userInfos | userPerformance | any) {
+        const { kind, data, sessions, userInfos } = responseData
+        console.log(responseData)
+        if (kind) {
             //sort data if data receive are not in good order
-            responseData.data.sort((a: any, b: any) => a.kind - b.kind);
+            data.sort((a: any, b: any) => a.kind - b.kind);
 
             //after sort data can set value of kind with index
-            const objectValue = responseData.data.map((element: any, index: number) => {
+            const objectValue = data.map((element: any, index: number) => {
                 if (element.kind === index + 1) {
-                    element.kind = responseData.kind[index + 1];
+                    element.kind = kind[index + 1];
                 }
                 return element;
             });
@@ -21,14 +26,24 @@ export default class FormatData {
           delete responseData.data;
       
           responseData.performance = objectValue;
-          this.userPerformance = responseData;
+          this.formatedData.push(responseData)
+        //   return this.userPerformance as any
         }
 
-        if(responseData.userInfos) {
-           this.userInfo = responseData.userInfos
+        if(userInfos) {
+           this.formatedData.push(responseData)
         }
 
-        
-      }
-
+        // if(sessions) {
+           
+        //     sessions.sort((a: any, b: any) => {
+        //         const dateA = new Date(a.day);
+        //         const dateB = new Date(b.day);
+        //         return dateA.getTime() - dateB.getTime();
+        //       });
+            
+        // }
+        // this.formatedData = [this.userPerformance, this.userInfo]
+        // return this.formatedData as any
+    }
 }
