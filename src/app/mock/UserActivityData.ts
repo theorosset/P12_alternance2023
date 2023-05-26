@@ -264,7 +264,7 @@ const USER_PERFORMANCE = [
 
 
 
-module.exports = {
+export default {
     USER_MAIN_DATA,
     USER_ACTIVITY,
     USER_AVERAGE_SESSIONS,

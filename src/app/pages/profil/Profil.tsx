@@ -11,18 +11,17 @@ const Profil = () => {
 
   
     const [loading, error, dataFormated] = UseDataApi('12')
-    console.log(dataFormated)
 
     if(!dataFormated) {
         return (<h1>is Loading</h1>)
     }
-
+    console.log(dataFormated)
     return (
         <div className='container__profil'>
             <Header />
             <div className='container__profil__center'>
                 <UserName name={dataFormated.userInfo.userInfos.firstName} />
-                <ChartBar />
+                <ChartBar data={dataFormated.userSessionsKiloAndCalories} />
             </div>
         </div>
     )

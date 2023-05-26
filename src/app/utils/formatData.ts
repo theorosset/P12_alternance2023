@@ -4,8 +4,8 @@ import { userInfos } from "../models/userInfos"
 export default class FormatData {
     public userPerformance = {} as userPerformance
     public userInfo = {} as userInfos
-    public sessionsLength = {}
-    public sessionsKiloAndCalories = {} 
+    public userSessionsLength = {}
+    public userSessionsKiloAndCalories = {} 
 
     constructor(responsesData: any) {
 
@@ -38,9 +38,9 @@ export default class FormatData {
             if(response.sessions) {
               response.sessions.forEach((session: any) => {
                     if(session.sessionLength) {
-                        return this.sessionsLength = response
-                    } else {
-                        return this.sessionsKiloAndCalories = response
+                        return this.userSessionsLength = response
+                    } else if (session.kilogram) {
+                        return this.userSessionsKiloAndCalories = response
                     }
                 })  
             }
