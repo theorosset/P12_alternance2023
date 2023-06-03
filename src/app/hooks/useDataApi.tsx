@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from 'axios'
 import FormatData from "../utils/formatData";
 import { formatedData } from "../models/formatedData";
 
-const UseDataApi = (userId: string) => {
+const UseDataApi = (userId: string, endpoint: string) => {
     const baseUrl = "http://localhost:3000/user";
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -15,27 +15,26 @@ const UseDataApi = (userId: string) => {
   
       async function getData() {
         try {
-          const endpoints = [
-            `${baseUrl}/${userId}`,
-            `${baseUrl}/${userId}/activity`,
-            `${baseUrl}/${userId}/average-sessions`,
-            `${baseUrl}/${userId}/performance`
-          ];
+          let url;
+          
+          if(endpoint === 'USER_ACTIVITY') {
+            url = `${baseUrl}/${userId}/activity`
+          } else if (endpoint === 'USER_MAIN_DATA') {
+            url =  `${baseUrl}/${userId}`
+          } else if (endpoint === 'USER_AVERAGE_SESSIONS') {
+            url = `${baseUrl}/${userId}/average-sessions`
+          } else {
+            url = `${baseUrl}/${userId}/performance`
+          }
   
-          const promises = endpoints.map((endpoint) => axios.get(endpoint) as Promise<AxiosResponse>);
-          const responses = await Promise.all(promises);
+         const { data, statusText } = await axios.get(url)  as any
+          
+         if(statusText !== "OK") {
+          setError(true);
+          return;
+         }
   
-          const tmpData: any[] = [];
-  
-          responses.forEach(({ data, statusText }) => {
-            if (statusText !== "OK") {
-              setError(true);
-              return;
-            }
-            tmpData.push(data.data);
-          });
-  
-          setDataFormated(new FormatData(tmpData) as any);
+          setDataFormated(new FormatData(data.data));
         } catch (error) {
           console.error(error);
           setError(true);
@@ -46,7 +45,7 @@ const UseDataApi = (userId: string) => {
   
       getData();
     }, [userId]);
-  
+
     return [loading, error, dataFormated] as const;
   };
   

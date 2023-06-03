@@ -10,18 +10,18 @@ const Profil = () => {
     // const userId = searchParams.get("id")
 
   
-    const [loading, error, dataFormated] = UseDataApi('12')
+    const [loading, error, dataFormated] = UseDataApi('12', "USER_MAIN_DATA")
 
     if(!dataFormated) {
         return (<h1>is Loading</h1>)
     }
-    console.log(dataFormated)
+
     return (
         <div className='container__profil'>
             <Header />
             <div className='container__profil__center'>
                 <UserName name={dataFormated.userInfo.userInfos.firstName} />
-                <ChartBar data={dataFormated.userSessionsKiloAndCalories} />
+                <ChartBar />
             </div>
         </div>
     )

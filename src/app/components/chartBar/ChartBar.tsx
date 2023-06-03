@@ -1,14 +1,18 @@
 import { FC } from "react";
 import { BarChart, XAxis, Tooltip, CartesianGrid, YAxis, Legend, Bar, ResponsiveContainer } from "recharts";
 import "./ChartBar.scss"
-import { userSessionsKiloAndCalories } from "../../models/userSessionKiloAndCalories";
-interface Props {
-  data: userSessionsKiloAndCalories
-}
+import UseDataApi from "../../hooks/useDataApi";
 
-const ChartBar: FC<Props> = ({data}) => {
-  console.log(data)
-  const dataSort = data.sessions.sort((a, b) => (a.day > b.day) ? 1 : -1);
+
+const ChartBar: FC = () => {
+  
+  const [loading, error, dataFormated] = UseDataApi('12', "USER_ACTIVITY")
+
+  if(error || !dataFormated) {
+    return <h1>error</h1>
+  }
+
+  const dataSort = dataFormated.userSessionsKiloAndCalories.sessions.sort((a, b) => (a.day > b.day) ? 1 : -1);
 
   dataSort.forEach((data, i) => {
     data.dayNumber = i + 1
