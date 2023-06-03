@@ -37,8 +37,8 @@ export default class FormatData {
 
     //get session
     if (responsesData.sessions) {
-
-      responsesData.sessions.forEach((session: any) => {
+    
+      responsesData.sessions.forEach((session: any, i: number) => {
         if (session.sessionLength) {
           return (this.userSessionsLength = responsesData)
         } else if (session.kilogram) {

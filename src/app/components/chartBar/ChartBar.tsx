@@ -20,7 +20,6 @@ const ChartBar: FC = () => {
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
-      console.log(payload)
       return (
         <div className="custom-tooltip">
           <p className="label">{`${payload[0].payload.kilogram}${payload[0].name}`}</p>
