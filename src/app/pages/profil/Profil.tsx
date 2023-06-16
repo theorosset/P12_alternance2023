@@ -4,6 +4,8 @@ import UseDataApi from '../../hooks/useDataApi';
 import UserName from '../../components/userName/UserName';
 import ChartBar from '../../components/chartBar/ChartBar';
 import ChartLine from '../../components/chartLine/ChartLine';
+import ChartRadar from '../../components/chartRadar/ChartRadar';
+
 import "./Profil.scss"
 
 const Profil = () => {
@@ -23,9 +25,10 @@ const Profil = () => {
             <div className='container__profil__center'>
                 <UserName name={dataFormated.userInfo.userInfos.firstName} />
                 <ChartBar />
-            </div>
-            <div className='container__profil__bottom'>
-                <ChartLine />
+                <div className='container__profil__bottom'>
+                    <ChartLine />
+                    <ChartRadar />
+                </div>
             </div>
         </div>
     )

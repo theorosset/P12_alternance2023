@@ -1,51 +1,7 @@
 import { FC } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import UseDataApi from '../../hooks/useDataApi';
-
-const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+import "./ChartLine.scss";
 
 const ChartLine: FC = () => {
   
@@ -54,24 +10,38 @@ const ChartLine: FC = () => {
   if(error || !dataFormated) {
     return <h1>error</h1>
   }
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      console.log(active, payload)
+      return (
+        <div className="custom-tooltip">
+          <p className="label">{`${payload[0].payload.sessionLength}min`}</p>
+        </div>
+      );
+    }
   
+    return null;
+  };
   return(
-      <ResponsiveContainer width="30%" height={300}>
-        <LineChart
-          width={500}
-          height={300}
-          data={dataFormated.userSessionsLength.sessions}
-          margin={{
-            bottom: 20,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="sessionLength" stroke="#8884d8" activeDot={{ r: 8 }} />
-        </LineChart>
-      </ResponsiveContainer>
+      <div className='container__chartLine'>
+        <p className='container__chartLine--text'>Durée moyenne des sessions</p>
+        <ResponsiveContainer width="40%" height={250} minWidth={300}>
+          <LineChart
+            data={dataFormated.userSessionsLength.sessions}
+            margin={{
+              left: 10,
+              right: 10,
+              bottom: 20,
+              top: -15,
+            }}
+          >
+          
+            <XAxis dataKey="day" tickMargin={10}/>
+            <Tooltip content={<CustomTooltip />} />
+            <Line type="monotone" dataKey="sessionLength" stroke="#FFFFFF" strokeWidth={2} dot={false} color='#FFFFF'/>
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     );
 }
 
