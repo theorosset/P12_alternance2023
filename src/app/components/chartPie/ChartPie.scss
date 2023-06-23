@@ -1,0 +1,38 @@
+@import "../../sass/main.scss";
+
+.container__chartPie {
+    position: relative;
+    background-color: #FBFBFB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: $radius-medium;
+    &--title {
+        position: absolute;
+        top: 8px;
+        left: 29px;
+        font-weight: 700;
+
+    }
+    &__center {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 2.2rem 2.5rem 2.2rem 2.5rem;
+        background-color: white;
+        border-radius: 100%;
+        & > p  {
+            color: #74798C;
+            font-size: 17px;
+            margin-top: 0.2rem;
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+        & > h2 {
+            text-align: center;
+            margin: 0;
+        }
+    }
+}

@@ -15,7 +15,7 @@ const UseDataApi = (userId: string, endpoint: string) => {
   
       async function getData() {
         try {
-          let url;
+          let url = ''
           
           if(endpoint === 'USER_ACTIVITY') {
             url = `${baseUrl}/${userId}/activity`
@@ -23,11 +23,11 @@ const UseDataApi = (userId: string, endpoint: string) => {
             url =  `${baseUrl}/${userId}`
           } else if (endpoint === 'USER_AVERAGE_SESSIONS') {
             url = `${baseUrl}/${userId}/average-sessions`
-          } else {
+          } else if (endpoint === 'USER_PERFORMANCE') {
             url = `${baseUrl}/${userId}/performance`
           }
   
-         const { data, statusText } = await axios.get(url)  as any
+         const { data, statusText } = await axios.get(url) as any
           
          if(statusText !== "OK") {
           setError(true);

@@ -1,6 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { FC, PureComponent } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 import "./ChartRadar.scss"
+import UseDataApi from '../../hooks/useDataApi';
 
 const data = [
   {
@@ -41,20 +42,25 @@ const data = [
   },
 ];
 
-export default class Example extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/simple-radar-chart-rjoc6';
+const ChartRadar: FC = () => {
+  
+  const [loading, error, dataFormated] = UseDataApi('12', "USER_PERFORMANCE")
 
-  render() {
-    return (
-        <div className='container__chartRadar'>
-            <ResponsiveContainer width="30%" height={250} minWidth={300}>
-                <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-                <PolarGrid radialLines={false}/>
-                <PolarAngleAxis dataKey="subject" />
-                <Radar name="Mike" dataKey="A" stroke="#FF0101" fill="#FF0101" fillOpacity={0.6} />
-                </RadarChart>
-            </ResponsiveContainer>
-        </div>
-    );
+  if(error || !dataFormated) {
+    return <h1>error</h1>
   }
+
+  return (
+    <div className='container__chartRadar'>
+      <ResponsiveContainer width="120%" height={225} minWidth={300}>
+          <RadarChart cx="50%" cy="50%" outerRadius="80%" data={dataFormated.userPerformance.performance}>
+          <PolarGrid radialLines={false}/>
+          <PolarAngleAxis dataKey="kind" dy={4} tickSize={15} dx={-2} fill='#FFFFFF'/>
+          <Radar dataKey="value" stroke="#FF0101" fill="#FF0101" fillOpacity={0.6} />
+          </RadarChart>
+      </ResponsiveContainer>
+    </div>
+  )
 }
+
+export default ChartRadar

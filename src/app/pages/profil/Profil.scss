@@ -1,12 +1,23 @@
 .container__profil {
-    &__center {
+    &__main {
         display: flex;
-        flex-direction: column;
-        width: 70%;
         margin: auto;
+        &__center {
+            display: flex;
+            &__graphique {
+                width: 80%;
+            }
+        }
+        &__all {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-left: 5rem;
+        }
     }
     &__bottom {
         margin-top: 2rem;
         display: flex;
+        justify-content: space-between;
     }
 }

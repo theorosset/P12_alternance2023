@@ -39,7 +39,7 @@ const ChartBar: FC = () => {
               <p className="container__chartBar__text__legend--info">Calories brûlées (kCal)</p>
             </div>
           </div>
-            <ResponsiveContainer width="90%" height={300}>
+            <ResponsiveContainer width="90%" height={250}>
                 <BarChart  data={dataSort}>
                     <CartesianGrid strokeDasharray="2 2" horizontal={true} vertical={false} />
                     <XAxis dataKey="dayNumber" axisLine={false} tickLine={false}/>

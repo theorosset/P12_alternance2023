@@ -5,4 +5,10 @@
     display: flex;
     align-items: center;
     border-radius: $radius-medium;
+    width: 30%;
+
+    & .recharts-polar-angle-axis-tick-value {
+        fill: white;
+        font-weight: 500;
+    }
 }

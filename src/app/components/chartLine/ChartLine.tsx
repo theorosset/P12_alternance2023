@@ -12,7 +12,6 @@ const ChartLine: FC = () => {
   }
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
-      console.log(active, payload)
       return (
         <div className="custom-tooltip">
           <p className="label">{`${payload[0].payload.sessionLength}min`}</p>
@@ -29,8 +28,8 @@ const ChartLine: FC = () => {
           <LineChart
             data={dataFormated.userSessionsLength.sessions}
             margin={{
-              left: 10,
-              right: 10,
+              left: 5,
+              right: 5,
               bottom: 20,
               top: -15,
             }}
