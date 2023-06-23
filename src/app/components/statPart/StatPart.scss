@@ -1,0 +1,23 @@
+@import "../../sass/main.scss";
+
+.container__statPart {
+    background-color: #FBFBFB;
+    padding: 2rem;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    border-radius: $radius-medium;
+    &__text {
+        &--stat {
+            font-weight: 700;
+        }
+        &--category {
+            color: #74798C;
+        }
+        & > p{
+            margin: 0;
+        }
+        margin-left: 1rem;
+    }
+}

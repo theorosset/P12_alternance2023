@@ -53,7 +53,7 @@ const ChartRadar: FC = () => {
   return (
     <div className='container__chartRadar'>
       <ResponsiveContainer width="120%" height={225} minWidth={300}>
-          <RadarChart cx="50%" cy="50%" outerRadius="80%" data={dataFormated.userPerformance.performance}>
+          <RadarChart cx="48%" cy="50%" outerRadius="80%" data={dataFormated.userPerformance.performance}>
           <PolarGrid radialLines={false}/>
           <PolarAngleAxis dataKey="kind" dy={4} tickSize={15} dx={-2} fill='#FFFFFF'/>
           <Radar dataKey="value" stroke="#FF0101" fill="#FF0101" fillOpacity={0.6} />

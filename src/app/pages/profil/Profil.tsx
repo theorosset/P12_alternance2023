@@ -1,4 +1,3 @@
-import { useSearchParams } from 'react-router-dom'
 import Header from '../../components/header/Header'
 import UseDataApi from '../../hooks/useDataApi'
 import UserName from '../../components/userName/UserName'
@@ -6,7 +5,7 @@ import ChartBar from '../../components/chartBar/ChartBar'
 import ChartLine from '../../components/chartLine/ChartLine'
 import ChartRadar from '../../components/chartRadar/ChartRadar'
 import ChartPie from '../../components/chartPie/ChartPie'
-
+import StatPart from '../../components/statPart/StatPart'
 import './Profil.scss'
 import Aside from '../../components/aside/Aside'
 
@@ -36,7 +35,10 @@ const Profil = () => {
               </div>
             </div>
             <div className="container__profil__right">
-
+                <StatPart userStat={dataFormated.userInfo.keyData.calorieCount} categorie='Calories'/>
+                <StatPart userStat={dataFormated.userInfo.keyData.proteinCount} categorie='Proteines'/>
+                <StatPart userStat={dataFormated.userInfo.keyData.carbohydrateCount} categorie='Glucides'/>
+                <StatPart userStat={dataFormated.userInfo.keyData.lipidCount} categorie='Lipides'/>
             </div>
           </div>
         </div>

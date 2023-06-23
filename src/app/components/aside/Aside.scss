@@ -10,10 +10,10 @@
     width: 7rem;
 
     &--text {
-        position: fixed;
+        position: relative;
         color: white;
         transform: rotate(270deg);
-        bottom: 8rem;
+        bottom: -11rem;
         width: 11rem;
     }
 }

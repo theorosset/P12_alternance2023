@@ -11,7 +11,7 @@ type userInfo = {
     lastName: string
 }
 
-type keyData = {
+export type keyData = {
     calorieCount: number
     carbohydrateCount: number
     lipidCount: number
