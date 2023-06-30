@@ -11,7 +11,7 @@ const ChartPie: FC<Props> = ({ scoreDay }) => {
     return (
         <div className="container__chartPie">
              <p className="container__chartPie--title">Score</p>
-            <ResponsiveContainer width="100%" height={250} minWidth={300} id="spin">
+            <ResponsiveContainer width="100%" height={225} minWidth={300} id="spin">
                     <PieChart>
                         <Pie
                             data={ [{ value: scoreDay }] }

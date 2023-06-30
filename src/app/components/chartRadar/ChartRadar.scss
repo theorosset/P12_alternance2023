@@ -12,3 +12,11 @@
         font-weight: 500;
     }
 }
+
+@media screen and (max-width: 1300px) {
+    .container__chartRadar{
+        width: 100%;
+        height: 300px;
+        margin-bottom: 2rem;
+    }
+}

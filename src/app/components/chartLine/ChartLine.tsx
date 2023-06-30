@@ -1,15 +1,20 @@
 import { FC } from 'react';
-import { LineChart, Line, XAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import UseDataApi from '../../hooks/useDataApi';
 import "./ChartLine.scss";
 
 const ChartLine: FC = () => {
   
   const [loading, error, dataFormated] = UseDataApi('12', "USER_AVERAGE_SESSIONS")
-
+  
   if(error || !dataFormated) {
     return <h1>error</h1>
   }
+    //sort userSession by day
+    dataFormated?.userSessionsLength.sessions.sort((a,b) => a.day - b.day)
+    const day = ["L", "M", "M", "J", "V", "S", "D"]
+
+
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
@@ -29,15 +34,14 @@ const ChartLine: FC = () => {
             data={dataFormated.userSessionsLength.sessions}
             margin={{
               left: 5,
-              right: 5,
               bottom: 20,
               top: -15,
             }}
           >
           
-            <XAxis dataKey="day" tickMargin={10}/>
+            <XAxis dataKey="day" tickMargin={10} tickFormatter={(value) => day[value - 1]}/>
             <Tooltip content={<CustomTooltip />} />
-            <Line type="monotone" dataKey="sessionLength" stroke="#FFFFFF" strokeWidth={2} dot={false} color='#FFFFF'/>
+            <Line type="monotone" dataKey="sessionLength" stroke="#FFFFFF" strokeWidth={2} strokeOpacity={0.7} dot={false} color='#FFFFF'/>
           </LineChart>
         </ResponsiveContainer>
       </div>

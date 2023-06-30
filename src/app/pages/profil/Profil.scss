@@ -30,3 +30,37 @@
         margin-left: 2rem;
     }
 }
+
+@media screen and (max-width: 1500px) {
+    .container__profil {
+    
+        &__main {
+            &__center {
+                display: flex;
+                flex-direction: column-reverse;
+                &__graphique {
+                    width: 91%;
+                }
+            }
+        }
+        &__right {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 1rem;
+            margin-left: 0;
+            max-width: 91%;
+        }
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .container__profil {
+    
+        &__bottom {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+}

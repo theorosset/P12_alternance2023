@@ -21,3 +21,14 @@
         margin-left: 1rem;
     }
 }
+
+@media screen and (max-width: 1500px) {
+    .container__statPart {
+        width: 18%;
+    }
+}
+@media screen and (max-width: 1500px) {
+    .container__statPart {
+       padding-left: 1rem;
+    }
+}
