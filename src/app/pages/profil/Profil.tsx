@@ -8,16 +8,18 @@ import ChartPie from '../../components/chartPie/ChartPie'
 import StatPart from '../../components/statPart/StatPart'
 import './Profil.scss'
 import Aside from '../../components/aside/Aside'
+import { FC } from 'react'
 
-const Profil = () => {
-  // const [searchParams] = useSearchParams()
-  // const userId = searchParams.get("id")
-
+const Profil: FC = () => {
   const [loading, error, dataFormated] = UseDataApi('12', 'USER_MAIN_DATA')
 
-  if (!dataFormated) {
+  if(error) {
+    return <h1>{ error }</h1>
+  }
+  if (!dataFormated || loading) {
     return <h1>is Loading</h1>
   }
+
   return (
     <div className="container__profil">
       <Header />
