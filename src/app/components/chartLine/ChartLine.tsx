@@ -7,9 +7,13 @@ const ChartLine: FC = () => {
   
   const [loading, error, dataFormated] = UseDataApi('12', "USER_AVERAGE_SESSIONS")
   
-  if(error || !dataFormated) {
-    return <h1>error</h1>
+  if(error) {
+    return <h1>{ error }</h1>
   }
+  if(loading || !dataFormated) {
+    return <h1>{ error }</h1>
+  }
+  
     //sort userSession by day
     dataFormated?.userSessionsLength.sessions.sort((a,b) => a.day - b.day)
     const day = ["L", "M", "M", "J", "V", "S", "D"]
